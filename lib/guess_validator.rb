@@ -1,9 +1,17 @@
+require_relative "guess"
+
 class GuessValidator
 
+  def initialize
+  end
 
-  #if colors are right && number of char is right && no wrong char
-  #GUESSES::array << guess
-  #else
-  #to REPL: puts "Your guess is invalid.  Try again" play_game
-
+  def validate(input)
+    if input.chars.any?{|letter| !"rgyb".include?(letter)}
+      puts "\nYour guess contains wrong letters. Try again."
+    elsif input.length != 4
+      puts "\nYour guess is not 4 letters. Try again."
+    else
+      Guess.new(input)
+    end
+  end
 end

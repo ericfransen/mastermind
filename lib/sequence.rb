@@ -1,20 +1,9 @@
 class Sequence
+  attr_reader :code
 
-  #sequence = []
-  #sequence << SEQUENCE GENERATOR
-    
-
+  def initialize(code)
+    @code = code
+  end
 end
 
-
-
-
-
-
-
-
-# attr_reader :code
-#
-# def initialize(code)
-#   @code = code
-# end
+##This just holds the secret code (sequence)

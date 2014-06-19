@@ -3,19 +3,20 @@ require_relative 'sequence'
 class SequenceGenerator
   attr_reader :colors, :length
 
-  def initialize(length, colors)
+  def initialize(length = 4, colors = ["r","g","b","y"])
     @length = length
     @colors = colors
   end
 
-  def generate
+  def new_sequence
     code = []
     length.times do
       code << colors.shuffle[0]
     end
-    code
+    Sequence.new(code)
   end
 end
+
 
   # def beginner
   #   length = 4

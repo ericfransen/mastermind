@@ -1,9 +1,13 @@
-require_relative 'guess_validator'
-
 class Guess
+  attr_reader :val_guess
 
-  def initialize
+  def initialize(input)
+    @val_guess = input
   end
+
+  # def make_guess_an_array
+  #   @val_guess.split
+  # end
 end
 
 #Guesses = []
