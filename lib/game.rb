@@ -3,7 +3,6 @@ require_relative 'sequence_generator'
 require_relative 'sequence_matcher'
 
 class Game
-
   attr_reader :turns, :guess_validator, :guesses, :answer, :win
 
   def initialize
@@ -17,39 +16,42 @@ class Game
   end
 
   def turn
-    @turn += 1
-    if @turn == 9
-      puts "Last chance!"
+    @turns += 1
+    if @turns == 9
+      puts "\n* * * * * * Last chance! * * * * * *"
+    elseif @turns == 10
+      @win = false
     end
   end
 
-  def time_start
+  def start_time
     if @turns == 1
       @start_time = Time.new
     end
   end
 
-  def time_end
+  def end_time
       @end_time = Time.new
   end
 
-
   def add_guess(input)
-    puts "ACTUAL: #{answer.inspect}"
+    # puts "ACTUAL: #{answer.inspect}"                     #########
     guess = GuessValidator.new.validate(input)
     if guess
       @guesses << guess
-      # Find out if the guess wins
+      turn
+      start_time
       matcher = SequenceMatcher.new(input, answer)
       if matcher.match?
-        puts "YOU WIN!"
-        puts (@start_time - @end_time)
+        puts "\n* * * * * * YOU WIN! * * * * * *"
+        end_time
+        puts "It took you #{@start_time} - #{@end_time}"
         @win = true
       else
+        puts "\nTurn #{turns}"
         puts "You got #{matcher.color_match} color matches in #{matcher.position_match} correct positions."
         puts "Try again."
       end
     end
   end
-
 end

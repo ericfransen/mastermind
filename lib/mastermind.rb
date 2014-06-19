@@ -36,8 +36,6 @@ class Mastermind
 
   def play_game(play_game)
     puts ""
-    #puts "TURN #{GAME::turn }"
-
     puts "I have a sequence of 4 elements made up of:\n(r)ed, (g)reen, (b)lue, and (y)ellow.\nWhat's your guess?"
     @game.add_guess(get_guess)
   end
